@@ -85,14 +85,14 @@ export const FormPopup = withAppContext(({ context, title, fields, rawData, getS
       field.name = key;
 
       if (dataHelpers.checkIfFieldIsObject(field)) {
-        if (finalRawData[key] || field.value) {
-          field.value = JSON.stringify(finalRawData[key] || field.value, null, '  ') || '';
+        if (flattenData[key] || field.value) {
+          field.value = JSON.stringify(flattenData[key] || field.value, null, '  ') || '';
         }
         return field;
       }
 
       if (field.type === 'array') {
-        field.value = finalRawData[key] || field.value || [];
+        field.value = flattenData[key] || field.value || [];
         return field;
       }
 
