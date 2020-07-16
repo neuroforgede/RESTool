@@ -179,18 +179,10 @@ export interface IConfigCustomAction extends IConfigMethod {
 
 export type IConfigPagination = 
   IConfigQueryPagination | 
-  IConfigJSONBodyPagination;
+  IConfigBodyPagination;
 
 export type IConfigQueryPagination = _IConfigPagination<'query', IConfigQueryPaginationParams>;
-export type IConfigJSONBodyPagination = _IConfigPagination<'json-body', IConfigJSONBodyPaginationParams>;
-
-export const isQueryPagination = (obj: IConfigPagination): obj is IConfigQueryPagination => {
-  return obj.source === 'query';
-}
-
-export const isJSONBodyPagination = (obj: IConfigPagination): obj is IConfigJSONBodyPagination => {
-  return obj.source === 'json-body';
-}
+export type IConfigBodyPagination = _IConfigPagination<'body', IConfigBodyPaginationParams>;
 
 interface _IConfigPagination<src extends string, paginationParams> {
   source: src
@@ -206,7 +198,7 @@ export interface IConfigQueryPaginationParams {
   descending?: IQueryParamConfig
 }
 
-export interface IConfigJSONBodyPaginationParams {
+export interface IConfigBodyPaginationParams {
   nextPath?: string
   prevPath?: string
   countPath?: string
